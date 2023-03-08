@@ -1,14 +1,20 @@
-import Head from "next/head";
-import Image from "next/image";
 import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
-
+import Main from "@/components/Main";
+import styled from "styled-components";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
-    <>
-      <div>Create Next App</div>
-    </>
+    <Maincontainer>
+      <Main />
+    </Maincontainer>
   );
 }
+
+const Maincontainer = styled.div`
+  display: flex;
+  width: 70%;
+  margin: auto;
+  padding: 30px;
+  justify-content: center;
+`;
