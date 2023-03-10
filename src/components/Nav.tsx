@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import logo from "/public/images/logo.png";
 import Image from "next/image";
+import { useRouter } from "next/router";
+
 export default function Nav() {
+  const { push } = useRouter();
+
   return (
     <>
       <Navbar>
@@ -9,7 +13,7 @@ export default function Nav() {
           <Image src={logo} height={100} alt={"로고이미지"} priority />
         </LogoWrap>
         <BtnWrap>
-          <PostBtn>새 글 작성</PostBtn>
+          <PostBtn onClick={() => push("/NewPost")}>새 글 작성</PostBtn>
           <LoginBtn>로그인</LoginBtn>
         </BtnWrap>
       </Navbar>
