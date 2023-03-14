@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL = process.env.ATTENTION_API_KEY;
+const URL = process.env.NEXT_PUBLIC_API_KEY;
 
 export const listRequest = {
   async get(setList: React.Dispatch<React.SetStateAction<string>>) {
