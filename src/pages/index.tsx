@@ -10,7 +10,7 @@ export default function Home() {
   const [list, setList] = useRecoilState(attentionListState);
 
   const getList = useCallback(() => listRequest.get(setList), [setList]);
-
+  console.log(list, "list");
   useEffect(() => {
     getList();
   }, [getList]);
@@ -20,7 +20,7 @@ export default function Home() {
       <MainWappar>
         <h1>당신의 고민과 이야기에 주목합니다. </h1>
         <h2>
-          오늘의 주목:<span> {list?.content}</span>
+          오늘의 주목:<p> {list?.content}</p>
         </h2>
       </MainWappar>
     </Container>
@@ -45,6 +45,6 @@ export const MainWappar = styled.div`
   border-radius: 10px;
   box-shadow: -9px 17px 13px rgb(0 0 0/16%);
   span {
-    color: #02d73b;
+    color: black;
   }
 `;

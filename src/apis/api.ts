@@ -11,6 +11,7 @@ export const listRequest = {
       console.error(error);
     }
   },
+
   async post(title: string, content: string) {
     try {
       await axios.post(`${URL}/posts`, {
