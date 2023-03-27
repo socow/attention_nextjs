@@ -1,68 +1,48 @@
-import dynamic from "next/dynamic";
-import { useEffect, useRef, useState } from "react";
+import Calendar from "@/components/Calendar";
 import styled from "styled-components";
-import { Container, MainWappar } from ".";
-import { listRequest } from "@/apis/api";
-import { useRouter } from "next/router";
-
-const Editor = dynamic(() => import("../components/editor"), { ssr: false }); // client 사이드에서만 동작되기 때문에 ssr false로 설정
 
 export default function NewPost() {
-  const { push } = useRouter();
-  const [content, setContent] = useState<string>("");
-  const [title, setTitle] = useState("");
-
-  // const viewContainerRef = useRef<HTMLDivElement>(null);
-
-  const post = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    listRequest.post(title, content);
-    push("/");
-  };
-
   return (
-    <PostContainer>
-      <MainWappar>
-        <form onSubmit={post}>
-          제목
-          <EditorContainer>
-            <input onChange={(e) => setTitle(e.target.value)} />
-            <Editor content={content} setContent={setContent} />
-            <button type="submit">글 작성하기</button>
-          </EditorContainer>
-        </form>
-      </MainWappar>
-    </PostContainer>
+    <Container>
+      <PostWrappar>
+        <Calendar />
+      </PostWrappar>
+    </Container>
   );
 }
-
-export const PostContainer = styled.div`
+const Container = styled.div`
+  @media ${({ theme }) => theme.device.mobile} {
+    width: 84%;
+    padding: 0px;
+  }
+  @media ${({ theme }) => theme.device.tabletL} {
+    width: 100%;
+  }
   display: flex;
-  width: 70%;
-  height: 40rem;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 75%;
+  height: 100%;
   margin: auto;
   padding: 30px;
-  justify-content: center;
 `;
-const EditorContainer = styled.div`
+const PostWrappar = styled.div`
+  @media ${({ theme }) => theme.device.mobile} {
+    margin-top: 0px;
+    box-shadow: none;
+  }
+  @media ${({ theme }) => theme.device.tablet} {
+    flex-direction: column;
+  }
   display: flex;
-  flex-direction: column;
-  height: 500px;
-  margin: 0 auto;
-  input {
-    width: 730px;
-    height: 50px;
-    margin-bottom: 10px;
-    border: 1px solid #e1e3e8;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: 500;
-    color: #333;
-  }
-  button {
-    height: 50px;
-    font-weight: 700;
-    background-color: #262626;
-    color: #fff;
-  }
+  justify-content: space-evenly;
+  align-items: flex-start;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+  margin-top: 50px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: rgb(0 0 0 / 25%) 0px 14px 28px, rgb(0 0 0 / 22%) 0px 10px 10px;
 `;

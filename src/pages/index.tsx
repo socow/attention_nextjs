@@ -1,50 +1,53 @@
 import { Inter } from "next/font/google";
+import CommentList from "@/components/CommentList";
+import Comments from "@/components/Comments";
 import styled from "styled-components";
-import { useCallback, useEffect } from "react";
-import { listRequest } from "@/apis/api";
-import { useRecoilState } from "recoil";
-import { attentionListState } from "@/store/attention.recoil";
+import MainList from "../components/MainList";
+import { useEffect, useState } from "react";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const [list, setList] = useRecoilState(attentionListState);
+  const [mounted, setMounted] = useState<boolean>(false);
 
-  const getList = useCallback(() => listRequest.get(setList), [setList]);
-  console.log(list, "list");
   useEffect(() => {
-    getList();
-  }, [getList]);
+    setMounted(true);
+  }, []);
 
   return (
-    <Container>
-      <MainWappar>
-        <h1>당신의 고민과 이야기에 주목합니다. </h1>
-        <h2>
-          오늘의 주목:<p> {list?.content}</p>
-        </h2>
-      </MainWappar>
-    </Container>
+    mounted && (
+      <Container>
+        <MainWrappar>
+          <MainList />
+          <Comments />
+          <CommentList />
+        </MainWrappar>
+      </Container>
+    )
   );
 }
-
-export const Container = styled.div`
+const Container = styled.div`
   display: flex;
-  width: 70%;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 75%;
+  height: 100%;
   margin: auto;
   padding: 30px;
-  justify-content: center;
 `;
-export const MainWappar = styled.div`
+const MainWrappar = styled.div`
+  @media ${({ theme }) => theme.device.mobile} {
+    margin-top: 0px;
+  }
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
+  height: 100%;
   padding: 20px;
   margin-top: 50px;
   background: #fff;
   border-radius: 10px;
-  box-shadow: -9px 17px 13px rgb(0 0 0/16%);
-  span {
-    color: black;
-  }
+  box-shadow: rgb(0 0 0 / 25%) 0px 14px 28px, rgb(0 0 0 / 22%) 0px 10px 10px;
 `;

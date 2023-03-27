@@ -1,12 +1,16 @@
 import Nav from "@/components/Nav";
 import type { AppProps } from "next/app";
 import { RecoilRoot } from "recoil";
-import "react-quill/dist/quill.snow.css";
+import { ThemeProvider } from "styled-components";
+import { theme } from "@/theme";
+import { firestore } from "@/firebase";
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <RecoilRoot>
-      <Nav />
-      <Component {...pageProps} />;
+      <ThemeProvider theme={theme}>
+        <Nav />
+        <Component {...pageProps} />
+      </ThemeProvider>
     </RecoilRoot>
   );
 }
