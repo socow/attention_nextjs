@@ -17,7 +17,7 @@ $ npm start
 
 # 사용 기술
 
-React
+Next.js
 
 TypeScript
 
@@ -44,9 +44,6 @@ firebase
  ┣ 📂apis
  ┃ ┣ 📜Comment.ts
  ┃ ┗ 📜Reservation.ts
- ┣ 📂assets
- ┃ ┣ 📜images.d.ts
- ┃ ┗ 📜logo.png
  ┣ 📂components
  ┃ ┣ 📜Calendar.tsx
  ┃ ┣ 📜CommentList.tsx
@@ -61,13 +58,15 @@ firebase
  ┣ 📂model
  ┃ ┗ 📜attention.ts
  ┣ 📂pages
- ┃ ┣ 📜MainPage.tsx
- ┃ ┗ 📜NewPostPage.tsx
+ ┃ ┣ 📜NewPost.tsx
+ ┃ ┣ 📜_app.tsx
+ ┃ ┣ 📜_document.tsx
+ ┃ ┗ 📜index.tsx
  ┣ 📂store
  ┃ ┗ 📜attention.recoil.ts
- ┣ 📜App.tsx
+ ┣ 📜.DS_Store
  ┣ 📜firebase.ts
- ┗ 📜index.tsx
+ ┗ 📜theme.ts
 ```
 
 커스텀 훅을 사용하여 코드, 로직의 간결해지고 가독성이 좋아도록하였으며 필요없는 반복을 줄이고 재사용성을 높였습니다.
