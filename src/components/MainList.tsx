@@ -12,7 +12,7 @@ export default function MainList() {
       <h1>오직 당신의 이야기에 주목합니다. </h1>
 
       {todayDate ? (
-        <Story> "{todayDate?.story}"</Story>
+        <Story> {todayDate?.story}</Story>
       ) : (
         <Story>오늘은 이야기가 없습니다</Story>
       )}
